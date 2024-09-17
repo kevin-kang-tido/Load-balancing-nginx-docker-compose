@@ -31,4 +31,11 @@ curl http://localhost:9999
 
 curl http://localhost:192.168.0.2
 
+# using Apache to testing Least Connection Load Balancing
+sudo apt update 
+sudo apt install apache2-utils -y 
+ab 
 
+ab -n [number of requests] -c [concurrent requests] http://[hostname]/
+                                // access to load balancing port
+ab -n 1000 -c 10 http://localhost:8888/
