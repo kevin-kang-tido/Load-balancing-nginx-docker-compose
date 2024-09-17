@@ -22,3 +22,13 @@ git remote -v # show origin of the project
 
 --  
 
+
+# Checking serivces
+
+curl http://localhost:9999
+
+# checking with ip 
+
+curl http://localhost:192.168.0.2
+
+

@@ -1,43 +1,39 @@
+version: '3.9'
+
 services: 
   first-nginx: 
-    extends: 
-      file: base/common-service.yaml
-      service: nginx-service
+    image: nginx:latest
     container_name: first-nginx-container
-    # ports: 
-    #   - 9999:80
+    # ports:  All port should be access from the load balancer 
+    #   - 9991:80   so no need to open port 
     volumes:
       - ./nginx/html/index1.html:/usr/share/nginx/html/index.html
     networks: 
       nginx-network: 
         ipv4_address: 192.168.0.10
+
   second-nginx: 
-    extends: 
-      file: base/common-service.yaml
-      service: nginx-service
+    image: nginx:latest
     container_name: second-nginx-container
+    # ports: 
+    #   - 9992:80
     volumes:
       - ./nginx/html/index2.html:/usr/share/nginx/html/index.html
-    # ports: 
-    #   - 8888:80
     networks: 
       - nginx-network
+
   third-nginx: 
-    extends: 
-      file: base/common-service.yaml
-      service: nginx-service
+    image: nginx:latest
     container_name: third-nginx-container
     # ports: 
-    #   - 7777:80
+    #   - 9993:80
     volumes:
       - ./nginx/html/index3.html:/usr/share/nginx/html/index.html
     networks: 
       - nginx-network
 
   loadbalancer:
-    extends: 
-      file: base/common-service.yaml
-      service: nginx-service
+    image: nginx:latest
     container_name: loadbalancer-container
     volumes: 
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
@@ -45,6 +41,7 @@ services:
       - 8888:80
     networks: 
       - nginx-network
+
 networks: 
   nginx-network: 
     ipam: 
