@@ -4,7 +4,7 @@ message="$1" # commit message when we want to push the code to git
 
 if [ -z "$message" ]; then
     # default message 
-    echo "Usage : bash autopushgit.sh <commit message> 🔥"    
+    echo "Usage : bash autopushgit.sh "commit message" 🔥"    
     exit 1
 fi
 
